@@ -1,0 +1,23 @@
+name: secureiqx-threatrank-test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  vulnerability-scan:
+    permissions:
+      contents: read
+    uses: SecureIQx-Dev/threatrank_source_analyzer/.github/workflows/vulnerability-analyzer.yml@main
+    
+    with:
+      repo_path: "."   # Path to scan
+      cvss_lower_bound: "HIGH" # Optional: default is "high"
+      epss_percentile_lower_bound: "0.00"  # Optional: default is "0.05"
+    
+    secrets:
+      gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
+      pat: ${{ secrets.PAT }}
+      license_key: ${{ secrets.LICENSE_KEY }}
