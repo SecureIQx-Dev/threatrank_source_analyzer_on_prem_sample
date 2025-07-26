@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [main]
   schedule:
-    - cron: '0 0 */2 * *' # cron job to repeat the job every 2 days
+    - cron: '0 0 */2 * *' # This line allows you to automatically repeat the job every 2 days
 
 jobs:
   vulnerability-scan:
